@@ -1,7 +1,77 @@
+.navbar-text {
+  color: #000000;
+}
+a {
+  color: #000000;
+}
+.h2,
+h2 {
+  font-size: 25px;
+}
+.navbar {
+  background: #666;
+  color: #000000;
+  border-radius: 0px;
+  border: 0px;
+}
+.navbar a {
+  font-size: 150%;
+  color: #000000;
+}
+.navbar a:hover {
+  color: #000000;
+}
+.navbar a:visited {
+  color: #000000;
+}
+.navbar-default .navbar-nav > li > a {
+  font-size: 150%;
+  color: #000000;
+}
+.navbar-default .navbar-nav > li > a:hover {
+  color: #000000;
+}
+.navbar-default .navbar-nav > li > a:visited {
+  color: #000000;
+}
+.btn-primary {
+  background: #333;
+  border-color: #ddd;
+}
 footer {
-  background: #f8f8f8;
+  margin-top: 1em;
+  padding-top: 1em;
+  /* border-top: 1px solid #666; */
+  color: #666;
+  /* border-bottom: 1px solid black; */
+  background: #ffffff;
+  /*  background: @navbar-default-bg;
   padding: 20px;
+  */
 }
 footer > p {
   margin: 0 0 0 0;
+}
+.fullwidth {
+  width: 100%;
+}
+.header {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #000000;
+  color: #ffffff;
+  padding-bottom: 3em;
+}
+.stg-brand {
+  font-size: 200%;
+  color: #ccc;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-weight: 800;
+}
+.stg-tagline {
+  font-size: 150%;
+  color: #f00;
 }

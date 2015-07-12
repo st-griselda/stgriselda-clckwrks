@@ -1,24 +1,34 @@
-with (import <nixpkgs> {}).pkgs;
-let pkg = haskellngPackages.callPackage
-            ({ mkDerivation, base, clckwrks, clckwrks-plugin-media
-             , clckwrks-plugin-page, clckwrks-theme-stg, containers
-             , happstack-server, hsp, mtl, stdenv, text, web-plugins, pandoc
-             }:
-             mkDerivation {
-               pname = "stg-dot-com";
-               version = "0.1.0.0";
-               src = ./.;
-               isLibrary = false;
-               isExecutable = true;
-               buildDepends = [
-                 base clckwrks clckwrks-plugin-media clckwrks-plugin-page
-                 clckwrks-theme-stg containers happstack-server hsp mtl text
-                 web-plugins
-               ];
-               buildTools = [ pandoc ];
-               homepage = "http://www.stgriselda.com/";
-               description = "st. griselda";
-               license = stdenv.lib.licenses.bsd3;
-             }) {};
+{ nixpkgs ? import <nixpkgs> {}, compiler ? "ghc7101" }:
+
+let
+
+  inherit (nixpkgs) pkgs;
+
+  f = { mkDerivation, base, clckwrks, clckwrks-plugin-media
+      , clckwrks-plugin-page, clckwrks-theme-stg, containers
+      , happstack-server, hsp, mtl, stdenv, text, web-plugins
+      , pandoc, clckwrks-cli, nodejs
+      }:
+      mkDerivation {
+        pname = "stg-dot-com";
+        version = "0.1.0.0";
+        src = ./.;
+        isLibrary = false;
+        isExecutable = true;
+        buildDepends = [
+          base clckwrks clckwrks-plugin-media clckwrks-plugin-page
+          clckwrks-theme-stg containers happstack-server hsp mtl text
+          web-plugins clckwrks-cli
+        ];
+        buildTools = [ pandoc nodejs ];
+        homepage = "http://www.stgriselda.com/";
+        description = "st. griselda";
+        license = stdenv.lib.licenses.bsd3;
+      };
+
+        drv = pkgs.haskellPackages.callPackage f {};
+
+
 in
-  pkg.env
+
+  if pkgs.lib.inNixShell then drv.env else drv

@@ -27,6 +27,8 @@ data-files:
   data/js/bootstrap.js
   data/js/bootstrap.min.js
   data/js/npm.js
+  data/imgs/jumbotron.png
+  data/imgs/stg---crossroads-back-alley-x.jpg
 
 source-repository head
    type:     git

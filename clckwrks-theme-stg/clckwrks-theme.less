@@ -1,17 +1,98 @@
 //
+
 // Load core variables and mixins
 // --------------------------------------------------
 
 @import "bootstrap/less/variables.less";
 @import "bootstrap/less/mixins.less";
 
+// theme vars
 @black: #000;
+@white: #fff;
+
+.navbar-text {
+  color: @black;
+}
+
+a {
+  color: @black;
+}
+
+.h2, h2 {
+ font-size: 25px;
+}
+
+.navbar {
+  background: #666;
+  color: @black;
+//  border-color: #000;
+  border-radius: 0px;
+  border: 0px;
+}
+
+.navbar a {
+   font-size: 150%;
+   color: @black;
+   &:hover {
+    color: @black;
+   }
+   &:visited {
+    color: @black;
+   }
+}
+
+.navbar-default .navbar-nav > li > a {
+   font-size: 150%;
+   color: @black;
+   &:hover {
+    color: @black;
+   }
+   &:visited {
+    color: @black;
+   }
+}
+
+.btn-primary {
+  background: #333;
+  border-color: #ddd;
+}
 
 footer {
-  background: @navbar-default-bg;
+ margin-top: 1em;
+ padding-top: 1em;
+/* border-top: 1px solid #666; */
+ color: #666;
+/* border-bottom: 1px solid black; */
+  background: @white;
+/*  background: @navbar-default-bg;
   padding: 20px;
+  */
 }
 
 footer > p {
   margin: 0 0 0 0;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.header {
+  .container-fixed();
+  background: @black;
+  color: @white;
+  padding-bottom: 3em;
+}
+
+.stg-brand {
+  font-size: 200%;
+  color: #ccc;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-weight: 800;
+}
+
+.stg-tagline {
+  font-size: 150%;
+  color: #f00;
 }
