@@ -3,12 +3,18 @@
 // Load core variables and mixins
 // --------------------------------------------------
 
+@import url(//fonts.googleapis.com/css?family=Oswald:400,700);
+@import url(//fonts.googleapis.com/css?family=Nobile:400,400italic,700,700italic);
 @import "bootstrap/less/variables.less";
 @import "bootstrap/less/mixins.less";
 
 // theme vars
 @black: #000;
 @white: #fff;
+
+html, body {
+ font-family: 'Nobile', sans-serif;
+}
 
 .navbar-text {
   color: @black;
@@ -17,6 +23,12 @@
 a {
   color: @black;
 }
+
+.h1, h1, .h2, h2, .h3, h3 {
+  font-family: 'Oswald', san-serif;
+}
+
+
 
 .h2, h2 {
  font-size: 25px;
@@ -85,6 +97,7 @@ footer > p {
 }
 
 .stg-brand {
+  font-family: 'Oswald', san-serif;
   font-size: 200%;
   color: #ccc;
   padding-top: 1em;
