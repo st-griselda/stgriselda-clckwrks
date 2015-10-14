@@ -76,7 +76,7 @@ footer > p {
   padding-right: 15px;
   background: #000000;
   color: #ffffff;
-  padding-bottom: 3em;
+  padding-bottom: 0;
 }
 .stg-brand {
   font-family: 'Oswald', san-serif;
@@ -89,4 +89,10 @@ footer > p {
 .stg-tagline {
   font-size: 150%;
   color: #f00;
+}
+.header-row {
+  background: url('/clck/theme-data/data%2Fimgs%2Fjumbotron-background.jpg') no-repeat;
+  height: 400px;
+  margin: 0;
+  padding: 0px;
 }

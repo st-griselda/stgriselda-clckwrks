@@ -1,5 +1,5 @@
 name:                clckwrks-theme-stg
-version:             0.0.0
+version:             0.0.2
 synopsis:            st. griselda theme
 homepage:            http://www.stgriselda.com/
 license:             BSD3
@@ -27,8 +27,36 @@ data-files:
   data/js/bootstrap.js
   data/js/bootstrap.min.js
   data/js/npm.js
-  data/imgs/jumbotron.png
+  data/imgs/jumbotron-background.jpg
   data/imgs/stg---crossroads-back-alley-x.jpg
+  data/favicon/android-chrome-144x144.png
+  data/favicon/android-chrome-192x192.png
+  data/favicon/android-chrome-36x36.png
+  data/favicon/android-chrome-48x48.png
+  data/favicon/android-chrome-72x72.png
+  data/favicon/android-chrome-96x96.png
+  data/favicon/apple-touch-icon-114x114.png
+  data/favicon/apple-touch-icon-120x120.png
+  data/favicon/apple-touch-icon-144x144.png
+  data/favicon/apple-touch-icon-152x152.png
+  data/favicon/apple-touch-icon-180x180.png
+  data/favicon/apple-touch-icon-57x57.png
+  data/favicon/apple-touch-icon-60x60.png
+  data/favicon/apple-touch-icon-72x72.png
+  data/favicon/apple-touch-icon-76x76.png
+  data/favicon/apple-touch-icon-precomposed.png
+  data/favicon/apple-touch-icon.png
+  data/favicon/browserconfig.xml
+  data/favicon/favicon-16x16.png
+  data/favicon/favicon-32x32.png
+  data/favicon/favicon-96x96.png
+  data/favicon/favicon.ico
+  data/favicon/manifest.json
+  data/favicon/mstile-144x144.png
+  data/favicon/mstile-150x150.png
+  data/favicon/mstile-310x150.png
+  data/favicon/mstile-310x310.png
+  data/favicon/mstile-70x70.png
 
 source-repository head
    type:     git
@@ -41,7 +69,7 @@ library
   build-depends:       base                   >= 4.5  && < 5,
                        clckwrks               >= 0.23 && < 0.24,
                        containers             >= 0.4  && < 0.6,
-                       happstack-authenticate >= 2.0  && < 2.2,
+                       happstack-authenticate >= 2.0  && < 2.4,
                        hsp                    >= 0.9  && < 0.11,
                        hsx2hs                 >= 0.13 && < 0.14,
                        mtl                    >= 2.1  && < 2.3,

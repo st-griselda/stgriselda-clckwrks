@@ -102,6 +102,26 @@ commonTemplate ttl hdr bdy = do
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      -- favicon
+     <link rel="apple-touch-icon" sizes="57x57" href=(ThemeData "data/favicon/apple-touch-icon-57x57.png") />
+     <link rel="apple-touch-icon" sizes="60x60" href=(ThemeData "data/favicon/apple-touch-icon-60x60.png") />
+     <link rel="apple-touch-icon" sizes="72x72" href=(ThemeData "data/favicon/apple-touch-icon-72x72.png") />
+     <link rel="apple-touch-icon" sizes="76x76" href=(ThemeData "data/favicon/apple-touch-icon-76x76.png") />
+     <link rel="apple-touch-icon" sizes="114x114" href=(ThemeData "data/favicon/apple-touch-icon-114x114.png") />
+     <link rel="apple-touch-icon" sizes="120x120" href=(ThemeData "data/favicon/apple-touch-icon-120x120.png") />
+     <link rel="apple-touch-icon" sizes="144x144" href=(ThemeData "data/favicon/apple-touch-icon-144x144.png") />
+     <link rel="apple-touch-icon" sizes="152x152" href=(ThemeData "data/favicon/apple-touch-icon-152x152.png") />
+     <link rel="apple-touch-icon" sizes="180x180" href=(ThemeData "data/favicon/apple-touch-icon-180x180.png") />
+     <link rel="icon" type="image/png" href=(ThemeData "data/favicon/favicon-32x32.png") sizes="32x32" />
+     <link rel="icon" type="image/png" href=(ThemeData "data/favicon/android-chrome-192x192.png") sizes="192x192" />
+     <link rel="icon" type="image/png" href=(ThemeData "data/favicon/favicon-96x96.png") sizes="96x96" />
+     <link rel="icon" type="image/png" href=(ThemeData "data/favicon/favicon-16x16.png") sizes="16x16" />
+     <link rel="manifest" href=(ThemeData "data/favicon/manifest.json") />
+     <meta name="apple-mobile-web-app-title" content="St. Griselda" />
+     <meta name="application-name" content="St. Griselda" />
+     <meta name="msapplication-TileColor" content="#da532c" />
+     <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+     <meta name="theme-color" content="#ffffff" />
       -- the meta tags must come first
       <title><% ttl %></title>
       <link rel="stylesheet" type="text/css" href=(ThemeData "data/css/bootstrap.min.css")  />
@@ -126,7 +146,7 @@ commonTemplate ttl hdr bdy = do
        <footer id="footer" class="footer">
         <div class="col-md-1"></div>
         <div class="col-md-8">
-          <p class="small">© 2016, St Griselda. All Rights Reserved</p>
+          <p class="small">© 2015, St Griselda. All Rights Reserved.</p>
         </div>
       </footer>
      </body>
@@ -207,19 +227,22 @@ heading = [hsx|
     St Griselda
    </div>
 
-   <div class="row">
+   <div class="row header-row">
     <div class="col-md-1">
     </div>
 
     <div class="col-md-5">
-     <img src=(ThemeData "data/imgs/stg---crossroads-back-alley-x.jpg") />
+--     <img src=(ThemeData "data/imgs/stg---crossroads-back-alley-x.jpg") />
     </div>
 
     <div class="col-md-5">
      <h2>New Release: Confusion & Certainty</h2>
-     <p>A 6-song exploration of strength, weakness, and the places in between.</p>
-     <p><a href="https://soundcloud.com/st-griselda/sets/confusion-certainty"><button type="button" class="btn btn-primary btn-lg btn-block">Listen On Soundcloud</button></a></p>
-     <p><a href="https://stgriselda.bandcamp.com/"><button type="button" class="btn btn-primary btn-lg btn-block">Listen On Bandcamp</button></a></p>
+     <p>6 industrial inspired songs officially released in Fall 2015, including the fan favorites “Nothing Left, Something More” and “Inventor’s Dream”.</p>
+     <p><a href="https://hearthis.at/stgriselda/"><button type="button" class="btn btn-primary btn-lg btn-block">♫ Listen On hearthis.at ♫</button></a></p>
+     <p><a href="//www.stgriselda.com/page/view-page/7"><button type="button" class="btn btn-primary btn-lg btn-block">Join The St. Griselda Social Club</button></a></p>
+--     <p><a href="https://stgriselda.bandcamp.com/"><button type="button" class="btn btn-primary btn-lg btn-block">Listen On Bandcamp</button></a></p>
+--     <p><a href="https://soundcloud.com/st-griselda/sets/confusion-certainty"><button type="button" class="btn btn-primary btn-lg btn-block">Listen On Soundcloud</button></a></p>
+
     </div>
    </div>
   </div>
