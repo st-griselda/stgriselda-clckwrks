@@ -7,6 +7,7 @@ import Clckwrks.Server      (simpleClckwrks)
 import Clckwrks.Plugin      (clckPlugin)
 import Clckwrks.Authenticate.Plugin (authenticatePlugin)
 import Clckwrks.Page.Plugin (pagePlugin)
+import Clckwrks.MailingList.Plugin (mailingListPlugin)
 import Data.Text            (Text)
 import Web.Plugins.Core     (initPlugin, setTheme)
 import System.Environment   (getArgs)
@@ -64,6 +65,7 @@ initHook baseURI clckState cc =
        initPlugin p baseURI authenticatePlugin
        initPlugin p "" clckPlugin
        initPlugin p "" pagePlugin
+       initPlugin p "" mailingListPlugin
        setTheme p (Just theme)
        return (clckState, cc)
 

@@ -7,7 +7,7 @@ let
   f = { mkDerivation, base, clckwrks, clckwrks-plugin-media
       , clckwrks-plugin-page, clckwrks-theme-stg, containers
       , happstack-server, hsp, mtl, stdenv, text, web-plugins
-      , pandoc, clckwrks-cli, nodejs
+      , pandoc, clckwrks-cli, nodejs, cabal-install, clckwrks-plugin-mailinglist
       }:
       mkDerivation {
         pname = "stg-dot-com";
@@ -18,9 +18,9 @@ let
         buildDepends = [
           base clckwrks clckwrks-plugin-media clckwrks-plugin-page
           clckwrks-theme-stg containers happstack-server hsp mtl text
-          web-plugins clckwrks-cli
+          web-plugins clckwrks-plugin-mailinglist
         ];
-        buildTools = [ pandoc nodejs ];
+        buildTools = [ pandoc nodejs cabal-install clckwrks-cli ];
         homepage = "http://www.stgriselda.com/";
         description = "st. griselda";
         license = stdenv.lib.licenses.bsd3;

@@ -1,5 +1,5 @@
 name:                clckwrks-theme-stg
-version:             0.0.2
+version:             0.0.3
 synopsis:            st. griselda theme
 homepage:            http://www.stgriselda.com/
 license:             BSD3
@@ -27,8 +27,15 @@ data-files:
   data/js/bootstrap.js
   data/js/bootstrap.min.js
   data/js/npm.js
-  data/imgs/jumbotron-background.jpg
+  data/imgs/background.jpg
+  data/imgs/header.png
+  data/imgs/header-right.png
+  data/imgs/hearthis.png
+  data/imgs/instagram.png
+  data/imgs/facebook.png
   data/imgs/stg---crossroads-back-alley-x.jpg
+  data/imgs/TwitterLogo.png
+  data/imgs/NLSM-loop.webm
   data/favicon/android-chrome-144x144.png
   data/favicon/android-chrome-192x192.png
   data/favicon/android-chrome-36x36.png

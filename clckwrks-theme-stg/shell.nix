@@ -22,6 +22,7 @@ let
         homepage = "http://www.stgriselda.com/";
         description = "st. griselda theme";
         license = stdenv.lib.licenses.bsd3;
+        doHaddock = false;
       };
 
   drv = pkgs.haskellPackages.callPackage f {};
