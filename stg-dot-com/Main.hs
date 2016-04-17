@@ -1,15 +1,17 @@
 {-# LANGUAGE FlexibleContexts, PackageImports, OverloadedStrings #-}
 module Main where
 
-import Clckwrks             (ClckwrksConfig(..), ClckState, TLSSettings(..), plugins)
+import Clckwrks             (ClckT, ClckURL, ClckPlugins, ClckwrksConfig(..), ClckState, TLSSettings(..), plugins)
 import Clckwrks.GetOpts     (parseArgs, clckwrksOpts)
 import Clckwrks.Server      (simpleClckwrks)
 import Clckwrks.Plugin      (clckPlugin)
 import Clckwrks.Authenticate.Plugin (authenticatePlugin)
 import Clckwrks.Page.Plugin (pagePlugin)
 import Clckwrks.MailingList.Plugin (mailingListPlugin)
-import Data.Text            (Text)
-import Web.Plugins.Core     (initPlugin, setTheme)
+import Control.Monad        (msum)
+import Data.Text            (Text, unpack)
+import Happstack.Server     (Request(rqPaths), Response, ServerPartT, nullDir, seeOther, toResponse, localRq)
+import Web.Plugins.Core     (addHandler, initPlugin, setTheme)
 import System.Environment   (getArgs)
 -- we use 'PackageImports' because the 'Theme' module is supplied by multiple packages
 -- import "clckwrks-theme-bootstrap" Theme (theme)
@@ -62,12 +64,19 @@ initHook :: Text           -- ^ baseURI, e.g. http://example.org
          -> IO (ClckState, ClckwrksConfig)
 initHook baseURI clckState cc =
     do let p = plugins clckState
+       addHandler p "promo" promoHandler
        initPlugin p baseURI authenticatePlugin
        initPlugin p "" clckPlugin
        initPlugin p "" pagePlugin
        initPlugin p "" mailingListPlugin
        setTheme p (Just theme)
        return (clckState, cc)
+
+
+promoHandler :: ClckPlugins -> [Text] -> ClckT ClckURL (ServerPartT IO) Response
+promoHandler _plugins paths =
+  localRq (\rq -> rq { rqPaths = map unpack paths }) $
+    msum [ nullDir >> seeOther ("/page/view-page-slug/8/promo" :: Text) (toResponse ()) ]
 
 ------------------------------------------------------------------------------
 -- main

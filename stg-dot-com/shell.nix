@@ -5,7 +5,7 @@ let
   inherit (nixpkgs) pkgs;
 
   f = { mkDerivation, base, clckwrks, clckwrks-plugin-media
-      , clckwrks-plugin-page, clckwrks-theme-stg, containers
+      , clckwrks-plugin-page, containers
       , happstack-server, hsp, mtl, stdenv, text, web-plugins
       , pandoc, clckwrks-cli, nodejs, cabal-install, clckwrks-plugin-mailinglist
       }:
@@ -17,7 +17,7 @@ let
         isExecutable = true;
         buildDepends = [
           base clckwrks clckwrks-plugin-media clckwrks-plugin-page
-          clckwrks-theme-stg containers happstack-server hsp mtl text
+          containers happstack-server hsp mtl text
           web-plugins clckwrks-plugin-mailinglist
         ];
         buildTools = [ pandoc nodejs cabal-install clckwrks-cli ];

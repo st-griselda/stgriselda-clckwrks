@@ -1,4 +1,4 @@
-{ mkDerivation, base, clckwrks, clckwrks-plugin-media
+{ mkDerivation, base, clckwrks, clckwrks-plugin-mailinglist, clckwrks-plugin-media
 , clckwrks-plugin-page, clckwrks-theme-stg, containers
 , happstack-server, hsp, mtl, stdenv, text, web-plugins
 }:
@@ -9,7 +9,7 @@ mkDerivation {
   isLibrary = false;
   isExecutable = true;
   buildDepends = [
-    base clckwrks clckwrks-plugin-media clckwrks-plugin-page
+    base clckwrks clckwrks-plugin-mailinglist clckwrks-plugin-media clckwrks-plugin-page
     clckwrks-theme-stg containers happstack-server hsp mtl text
     web-plugins
   ];

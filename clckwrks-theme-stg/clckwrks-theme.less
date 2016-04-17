@@ -3,7 +3,7 @@
 // Load core variables and mixins
 // --------------------------------------------------
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,700);
 @import url(//fonts.googleapis.com/css?family=Oswald:400,700);
 @import url(//fonts.googleapis.com/css?family=Nobile:400,400italic,700,700italic);
 // @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200);
@@ -16,8 +16,7 @@
 
 html, body {
  font-family: 'Nobile', sans-serif;
- background: url('/clck/theme-data/data%2Fimgs%2Fbackground.jpg') repeat-y;
- background-size: 100% auto;
+ background: url('/clck/theme-data/data%2Fimgs%2Fpattern_17.png') center 0;
 }
 
 .navbar-text {
@@ -30,18 +29,31 @@ a {
 
 .h1, h1, .h2, h2, .h3, h3 {
   font-family: 'Open Sans', san-serif;
+  font-weight: 700;
+}
+
+.h1, h1 {
+    background: url('/clck/theme-data/data%2Fimgs%2Fblock_title_bg.png') 0 top repeat-x;
+    color: #fff;
+    padding: 1em 16px 0.7em 16px;
+    border: 4px solid #2C2C2C;
+    border-top-width: 0;
+    margin: 0 -15px 1em -15px;
+    font-size: 14px;
+    font-weight: 800;
 }
 
 .h2, h2 {
- font-size: 25px;
+ font-size: 12px;
 }
 
 .navbar {
-  background: @black;
+//  background: @black;
   color: @white;
 //  border-color: #000;
   border-radius: 0px;
   border: 0px;
+  font-weight: 700;
 }
 
 .navbar a {
@@ -57,7 +69,7 @@ a {
 }
 
 .navbar-default .navbar-nav > li > a {
-   font-size: 150%;
+   font-size: 100%;
    color: @white;
    &:hover {
     color: @white;
@@ -65,10 +77,12 @@ a {
    &:visited {
     color: @white;
    }
+   padding-top: 11px;
 }
 
 .navbar-default {
   margin: 0px;
+  background-color: transparent;
 }
 
 .btn-primary {
@@ -78,7 +92,8 @@ a {
 
 footer {
  margin-top: 1em;
- padding-top: 1em;
+ padding-top: 35px;
+ padding-bottom: 17px;
 /* border-top: 1px solid #666; */
  color: #666;
 /* border-bottom: 1px solid black; */
@@ -86,6 +101,8 @@ footer {
 /*  background: @navbar-default-bg;
   padding: 20px;
   */
+/*  background: url('/clck/theme-data/data%2Fimgs%2Ffooter_top_bg.png'), url('/clck/theme-data/data%2Fimgs%2Ffooter_bottom_bg.png') repeat-x; */
+  background: url('/clck/theme-data/data%2Fimgs%2Ffooter-full.png') repeat-x;
 }
 
 footer > p {
@@ -97,6 +114,49 @@ footer > p {
 }
 
 .header {
+  background: url('/clck/theme-data/data%2Fimgs%2Fheader-full.png') 0 top repeat-x;
+  .container-fluid {
+    padding-left: 5px;
+  }
+
+/*  background: url('/clck/theme-data/data%2Fimgs%2Fsupheader_bg.png') 0 top repeat-x; */
+  .top-row {
+    padding: 18px 0;
+  }
+  .bottom-row {
+/*    background: url('/clck/theme-data/data%2Fimgs%2Fsubheader_top_bg.png') 0 top repeat-x; */
+  }
+  .stgriselda {
+    font-family: 'Open Sans', san-serif;
+    letter-spacing: 0.1em;
+    font-size: 26pt;
+    color: #fff;
+    img {
+      vertical-align: baseline;
+    }
+  }
+  .h1, h1 {
+       margin-top: 1em;
+       font-size: 32pt;
+  }
+  .h2, h2 {
+       margin: 0px;
+       font-size: 16pt;
+  }
+  .h1, h1, .h2, h2, .h3, h3 {
+    font-family: 'Open Sans', san-serif;
+    letter-spacing: 0.5em;
+  }
+  .navbar
+  {
+/*    background: url('/clck/theme-data/data%2Fimgs%2Fsubheader_bottom_bg.png') 0 top repeat-x; */
+    .container-fluid {
+      background: url('/clck/theme-data/data%2Fimgs%2Fsubheader_top_bg.png') 0 top repeat-x;
+    }
+  }
+}
+
+.header-old {
   .container-fixed();
  /*  background: @black; */
   background: url('/clck/theme-data/data%2Fimgs%2Fheader.png'), url('/clck/theme-data/data%2Fimgs%2Fheader-right.png');
@@ -140,7 +200,17 @@ footer > p {
 }
 
 .content-section {
-   background: RGBA(255,255,255,0.9);
+
+}
+
+.widget
+{
+   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+   box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+   background: RGBA(255,255,255,1.0);
+   margin-top: 2em;
+
 }
 
 .text-section {
@@ -149,7 +219,6 @@ footer > p {
 
 .social-media-section {
    line-height: 1.5;
-   text-align: right;
 }
 
 #video-container {
@@ -182,4 +251,14 @@ video.fillWidth {
 {
  text-align: center;
  font-size: 3em;
+}
+
+.banner-img
+{
+ padding: 0;
+}
+
+.banner-img > img
+{
+ width: 100%;
 }

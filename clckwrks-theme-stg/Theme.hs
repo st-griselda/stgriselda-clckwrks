@@ -141,12 +141,12 @@ commonTemplate ttl hdr bdy = do
      </head>
      <body ng-app="clckwrksApp" ng-controller="AuthenticationCtrl as auth">
        <% heading %>
-       <% genNavBar %>
+
        <% bdy %>
        <footer id="footer" class="row footer">
         <div class="col-md-1"></div>
         <div class="col-md-8">
-          <p class="small">© 2015, St Griselda. All Rights Reserved.</p>
+          <p class="small">© 2016, St Griselda. All Rights Reserved.</p>
         </div>
       </footer>
      </body>
@@ -239,7 +239,7 @@ videoSplashTemplate ttl hdr bdy = do
          <div class="col-md-1"></div>
          <div class="col-md-10 content-section">
           <div class="row">
-           <div class="col-md-8 text-section">
+           <div class="col-md-8 widget text-section">
             <% bdy %>
            </div>
           </div>
@@ -271,17 +271,17 @@ standardTemplate ttl hdr bdy = do
 
        <div class="col-md-10 content-section">
         <div class="row">
-         <div class="col-md-8 text-section">
+         <div class="col-md-7 widget text-section">
            <% bdy %>
          </div>
-         <div class="col-md-3 social-media-section">
-           <h1></h1>
+         <div class="col-md-1"></div>
+         <div class="col-md-4 widget social-media-section">
+           <h1>Social</h1>
            <p><a href="https://hearthis.at/stgriselda"><img src=(ThemeData "data/imgs/hearthis.png") /></a></p>
            <p><a href="https://twitter.com/stgriselda"><img src=(ThemeData "data/imgs/TwitterLogo.png") /></a></p>
            -- <p><a href="https://instagram.com/lord_gothington"><img src=(ThemeData "data/imgs/instagram.png") /></a></p>
            <p><a href="https://www.facebook.com/StGriselda/"><img src=(ThemeData "data/imgs/facebook.png") /></a></p>
          </div>
-         <div class="col-md-1"></div>
 
         </div>
        </div>
@@ -339,30 +339,17 @@ standardTemplate ttl hdr bdy = do
 
 heading :: GenXML (Clck ClckURL)
 heading = [hsx|
-  <div class="header">
-  {-
-   <div class="stg-brand">
-    St Griselda
+  <div class="container-fluid header">
+   <div class="row top-row">
+    <div class="container-fluid">
+     <div class="col-md-1"></div>
+     <div class="col-md-7 stgriselda">
+       <span>St Griselda</span><img src=(ThemeData "data/imgs/logo-header.png") alt="stg-logo" />
+     </div>
+    </div>
    </div>
-  -}
-   <div class="row header-row">
-    <div class="col-md-1">
-    </div>
-
-    <div class="col-md-3">
---     <img src=(ThemeData "data/imgs/stg---crossroads-back-alley-x.jpg") />
-    </div>
-
-    <div class="col-md-7">
-     <h1>St Griselda</h1>
-     <h2>emotional electronica</h2>
---     <p>6 industrial inspired songs officially released in Fall 2015, including the fan favorites “Nothing Left, Something More” and “Inventor’s Dream”.</p>
---     <p><a href="https://hearthis.at/stgriselda/"><button type="button" class="btn btn-primary btn-lg btn-block">♫ Listen On hearthis.at ♫</button></a></p>
---     <p><a href="//www.stgriselda.com/page/view-page/7"><button type="button" class="btn btn-primary btn-lg btn-block">Join The St. Griselda Social Club</button></a></p>
---     <p><a href="https://stgriselda.bandcamp.com/"><button type="button" class="btn btn-primary btn-lg btn-block">Listen On Bandcamp</button></a></p>
---     <p><a href="https://soundcloud.com/st-griselda/sets/confusion-certainty"><button type="button" class="btn btn-primary btn-lg btn-block">Listen On Soundcloud</button></a></p>
-
-    </div>
+   <div class="row bottom-row">
+    <% genNavBar %>
    </div>
   </div>
   |]
@@ -376,22 +363,20 @@ homepageTemplate :: ( EmbedAsChild (ClckT ClckURL (ServerPartT IO)) headers
                  -> XMLGenT (ClckT ClckURL (ServerPartT IO)) XML
 homepageTemplate ttl hdr bdy = do
   commonTemplate ttl hdr [hsx|
-      <%>
---       <img class="fullwidth" src=(ThemeData "data/imgs/jumbotron.png") />
-
-       <div class="container">
+       <div class="container-fluid">
+         <div class="row">
+          <div class="col-md-12 banner-img">
+           <img src=(ThemeData "data/imgs/stg-patreon-banner.jpg") />
+          </div>
+         </div>
          <div class="row">
           <div class="col-md-1"></div>
-          <div class="col-md-8">
+          <div class="col-md-8 widget">
            <% bdy %>
           </div>
          </div>
          <div id="push"></div>
        </div>
-
---      <footer id="footer" class="footer">
---      </footer>
-     </%>
   |]
   {-
     p <- plugins <$> get
@@ -457,5 +442,5 @@ homepageStyle = ThemeStyle
     { themeStyleName        = "homepage"
     , themeStyleDescription = "homepage"
     , themeStylePreview     = Nothing
-    , themeStyleTemplate    = videoSplashTemplate
+    , themeStyleTemplate    = homepageTemplate
     }
