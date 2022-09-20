@@ -76,7 +76,7 @@ commonTemplate :: ( EmbedAsChild (ClckT ClckURL (ServerPartT IO)) headers
                  -> XMLGenT (ClckT ClckURL (ServerPartT IO)) XML
 commonTemplate ttl hdr bdy = do
     p <- plugins <$> get
-    (Just authRouteFn) <- getPluginRouteFn p (pluginName authenticatePlugin)
+    ~(Just authRouteFn) <- getPluginRouteFn p (pluginName authenticatePlugin)
     [hsx|
     <html lang="en">
      <head>
@@ -185,7 +185,7 @@ videoSplashTemplate :: ( EmbedAsChild (ClckT ClckURL (ServerPartT IO)) headers
                  -> XMLGenT (ClckT ClckURL (ServerPartT IO)) XML
 videoSplashTemplate ttl hdr bdy = do
     p <- plugins <$> get
-    (Just authRouteFn) <- getPluginRouteFn p (pluginName authenticatePlugin)
+    ~(Just authRouteFn) <- getPluginRouteFn p (pluginName authenticatePlugin)
     [hsx|
     <html lang="en">
      <head>

@@ -8,7 +8,7 @@ import Clckwrks.Plugin      (clckPlugin)
 import Clckwrks.Authenticate.Plugin (authenticatePlugin)
 import Clckwrks.Page.Plugin (pagePlugin)
 import Clckwrks.Media.Plugin (mediaPlugin)
-import Clckwrks.MailingList.Plugin (mailingListPlugin)
+-- import Clckwrks.MailingList.Plugin (mailingListPlugin)
 import Control.Monad        (msum)
 import Data.Text            (Text, unpack)
 import Happstack.Server     (Request(rqPaths), Response, ServerPartT, Browsing(DisableBrowsing), nullDir, seeOther, toResponse, localRq, serveDirectory)
@@ -21,14 +21,6 @@ import Theme (theme)
 ------------------------------------------------------------------------------
 -- ClckwrksConfig
 ------------------------------------------------------------------------------
-
-tls :: TLSSettings
-tls = TLSSettings
-      { clckTLSPort = 8443
-      , clckTLSCert = "ssl/localhost.crt"
-      , clckTLSKey  = "ssl/localhost.key"
-      , clckTLSCA   = Nothing
-      }
 
 -- | default configuration. Most of these options can be overridden on
 -- the command-line accept for 'clckInitHook'.
@@ -75,7 +67,7 @@ initHook baseURI clckState cc =
        initPlugin p "" clckPlugin
        initPlugin p "" pagePlugin
        initPlugin p "" mediaPlugin
-       initPlugin p "" mailingListPlugin
+--       initPlugin p "" mailingListPlugin
        setTheme p (Just theme)
        return (clckState, cc)
 
