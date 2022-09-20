@@ -5,9 +5,9 @@ let
   inherit (nixpkgs) pkgs;
 
   f = { mkDerivation, base, clckwrks, clckwrks-plugin-media
-      , clckwrks-plugin-page, containers
+      , clckwrks-plugin-page, clckwrks-plugin-mailinglist, containers, happstack-authenticate
       , happstack-server, hsp, mtl, stdenv, text, web-plugins
-      , pandoc, clckwrks-cli, nodejs, cabal-install #, clckwrks-plugin-mailinglist
+      , pandoc, clckwrks-cli, nodejs, hsx2hs, cabal-install
       }:
       mkDerivation {
         pname = "stg-dot-com";
@@ -16,12 +16,11 @@ let
         isLibrary = false;
         isExecutable = true;
         buildDepends = [
-          base clckwrks clckwrks-plugin-media
-          clckwrks-plugin-page
-          containers happstack-server hsp mtl text
-          web-plugins # clckwrks-plugin-mailinglist
+          base clckwrks # clckwrks-plugin-media clckwrks-plugin-page # clckwrks-plugin-mailinglist
+          containers happstack-server hsp mtl text happstack-authenticate
+          web-plugins clckwrks-cli hsx2hs cabal-install
         ];
-        buildTools = [ pandoc nodejs cabal-install clckwrks-cli ];
+        buildTools = [ pandoc nodejs ];
         homepage = "http://www.stgriselda.com/";
         description = "st. griselda";
         license = stdenv.lib.licenses.bsd3;

@@ -1,6 +1,6 @@
 { mkDerivation, base, clckwrks, clckwrks-plugin-mailinglist, clckwrks-plugin-media
 , clckwrks-plugin-page, clckwrks-theme-stg, containers
-, happstack-server, hsp, mtl, stdenv, text, web-plugins
+, happstack-server, hsp, mtl, stdenv, text, web-plugins, cabalsdist
 }:
 mkDerivation {
   pname = "stg-dot-com";

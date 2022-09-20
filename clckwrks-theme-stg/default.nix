@@ -1,5 +1,5 @@
 { mkDerivation, base, clckwrks, containers, happstack-authenticate
-, hsp, hsx2hs, mtl, stdenv, text, web-plugins
+, hsp, hsx2hs, mtl, stdenv, text, web-plugins, cabalsdist
 }:
 mkDerivation {
   pname = "clckwrks-theme-stg";

@@ -41,7 +41,9 @@ data-files:
            data/imgs/stg-patreon-banner.jpg
            data/imgs/TwitterLogo.png
            data/imgs/logo-header.png
+           data/imgs/logo-header-black.png
            data/imgs/pattern_17.png
+           data/imgs/patreon_logo.png
            data/favicon/android-chrome-144x144.png
            data/favicon/android-chrome-192x192.png
            data/favicon/android-chrome-36x36.png
@@ -81,11 +83,11 @@ library
   exposed-modules:     Theme
                        Paths_clckwrks_theme_stg
   build-depends:       base                   >= 4.5  && < 5,
-                       clckwrks               >= 0.23 && < 0.24,
+                       clckwrks               >= 0.23 && < 0.25,
                        containers             >= 0.4  && < 0.6,
                        happstack-authenticate >= 2.0  && < 2.4,
                        hsp                    >= 0.9  && < 0.11,
-                       hsx2hs                 >= 0.13 && < 0.14,
+                       hsx2hs                 >= 0.13 && < 0.15,
                        mtl                    >= 2.1  && < 2.3,
                        text                   >= 0.11 && < 1.3,
                        web-plugins            >= 0.2  && < 0.3

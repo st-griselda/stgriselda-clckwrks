@@ -35,56 +35,37 @@ genNavBar =
        mName <- query GetSiteName
        navBarHTML (fromMaybe "St. Griselda" mName) menu
 
--- | helper function to generate a navigation bar from the navigation bar data
-navBarHTML :: T.Text   -- ^ brand
-           -> NavBar -- ^ navigation bar links
+navBarHTML :: T.Text -- ^ brand
+           -> NavBar -- ^ nav bar links
            -> GenXML (Clck ClckURL)
-navBarHTML brand (NavBar menuItems) = [hsx|
- <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    -- Brand and toggle get grouped for better mobile display
-    <div class="col-md-1"></div>
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
---      <a class="navbar-brand" href="/"><% brand %></a>
-    </div>
+navBarHTML brand (NavBar navBarItems) = [hsx|
+  <nav class="nav">
+   <div class="nav-left">
+    <a class="nav-item is-brand" href="/">
+     <img src=(ThemeData "data/imgs/logo-header-black.png") alt="St. Griselda Logo" />
+     <span>St. Griselda</span>
+    </a>
+   </div>
+   <span class="nav-toggle" onClick="$(this).toggleClass('is-active'); $('.nav-menu').toggleClass('is-active'); ">
+     <span></span>
+     <span></span>
+     <span></span>
+   </span>
 
-    -- Collect the nav links, forms, and other content for toggling
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-show="!isAuthenticated">
-      -- this is where actual menu things go
-      <ul class="nav navbar-nav">
-        <% mapM mkNavBarItem menuItems %>
-      </ul>
-{-
-      <span class="" ng-controller="UsernamePasswordCtrl">
-       <up-login-inline />
-      </span>
+   <div class="nav-center">
+   </div>
 
-      -- navbar-text would make more sense than navbar-form, but it shifts the images funny. :-/
-      <span class="navbar-left navbar-btn" ng-controller="OpenIdCtrl" ng-show="!isAuthenticated">
-       <openid-google />
-      </span>
-      <span class="navbar-left navbar-btn" ng-controller="OpenIdCtrl" ng-show="!isAuthenticated">
-       <openid-yahoo />
-      </span>
+   <div class="nav-right nav-menu">
+    <% mapM mkNavBarItem navBarItems %>
+   </div>
 
-      <span up-authenticated=True class="navbar-left navbar-form">
-       <a ng-click="logout()" href="">Logout {{claims.user.username}}</a>
-      </span>
--}
-    </div> -- /.navbar-collapse
-  </div>  -- /.container-fluid
- </nav>
-    |]
+  </nav>
+  |]
 
 mkNavBarItem :: NavBarItem -> GenXML (Clck ClckURL)
 mkNavBarItem (NBLink (NamedLink ttl lnk)) =
-    [hsx| <li><a href=lnk><% ttl %></a></li> |]
+    [hsx| <a class="nav-item" href=lnk><% ttl %></a> |]
+
 
 commonTemplate :: ( EmbedAsChild (ClckT ClckURL (ServerPartT IO)) headers
                     , EmbedAsChild (ClckT ClckURL (ServerPartT IO)) body
@@ -124,8 +105,9 @@ commonTemplate ttl hdr bdy = do
      <meta name="theme-color" content="#ffffff" />
       -- the meta tags must come first
       <title><% ttl %></title>
-      <link rel="stylesheet" type="text/css" href=(ThemeData "data/css/bootstrap.min.css")  />
-      <link rel="stylesheet" type="text/css" href=(ThemeData "data/css/clckwrks-theme.min.css")  />
+--      <link rel="stylesheet" type="text/css" href=(ThemeData "data/css/bootstrap.min.css")  />
+--      <link rel="stylesheet" type="text/css" href=(ThemeData "data/css/clckwrks-theme.min.css")  />
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.css" />
       -- <link rel="stylesheet" type="text/css" href=(ThemeData "data/css/hscolour.css") />
       -- jquery
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -138,17 +120,33 @@ commonTemplate ttl hdr bdy = do
       <script src=(authRouteFn (Auth Controllers) [])></script>
       <% hdr %>
       <% googleAnalytics %>
+      -- Facebook Pixel Code
+      <script>
+       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+       t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+       document,'script','https://connect.facebook.net/en_US/fbevents.js');
+       fbq('init', '220030181784624'); // Insert your pixel ID here.
+       fbq('track', 'PageView');
+      </script>
+      <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=220030181784624&ev=PageView&noscript=1"
+      /></noscript>
+      -- End Facebook Pixel Code
+
      </head>
      <body ng-app="clckwrksApp" ng-controller="AuthenticationCtrl as auth">
        <% heading %>
-
        <% bdy %>
+{-
        <footer id="footer" class="row footer">
         <div class="col-md-1"></div>
         <div class="col-md-8">
           <p class="small">© 2016, St Griselda. All Rights Reserved.</p>
         </div>
       </footer>
+        -}
      </body>
     </html>
     |]
@@ -246,12 +244,14 @@ videoSplashTemplate ttl hdr bdy = do
          </div>
         </div>
        </div>
+{-
        <footer id="footer" class="row footer">
         <div class="col-md-1"></div>
         <div class="col-md-8">
           <p class="small">© 2015, St Griselda. All Rights Reserved.</p>
         </div>
        </footer>
+        -}
      </body>
     </html>
     |]
@@ -265,6 +265,14 @@ standardTemplate :: ( EmbedAsChild (ClckT ClckURL (ServerPartT IO)) headers
                  -> XMLGenT (ClckT ClckURL (ServerPartT IO)) XML
 standardTemplate ttl hdr bdy = do
   commonTemplate ttl hdr [hsx|
+                             <section class="section">
+                               <div class="container">
+                                <% bdy %>
+                               </div>
+                             </section>
+                             |]
+{-
+  commonTemplate ttl hdr [hsx|
      <div class="container-fluid">
       <div class="row">
        <div class="col-md-1"></div>
@@ -277,6 +285,7 @@ standardTemplate ttl hdr bdy = do
          <div class="col-md-1"></div>
          <div class="col-md-4 widget social-media-section">
            <h1>Social</h1>
+           <p><a href="https://patreon.com/stgriselda"><img src=(ThemeData "data/imgs/patreon_logo.png") /></a></p>
            <p><a href="https://hearthis.at/stgriselda"><img src=(ThemeData "data/imgs/hearthis.png") /></a></p>
            <p><a href="https://twitter.com/stgriselda"><img src=(ThemeData "data/imgs/TwitterLogo.png") /></a></p>
            -- <p><a href="https://instagram.com/lord_gothington"><img src=(ThemeData "data/imgs/instagram.png") /></a></p>
@@ -288,7 +297,7 @@ standardTemplate ttl hdr bdy = do
       </div>
      </div>
    |]
-
+-}
   {-
     p <- plugins <$> get
     (Just authRouteFn) <- getPluginRouteFn p (pluginName authenticatePlugin)
@@ -338,21 +347,18 @@ standardTemplate ttl hdr bdy = do
 -}
 
 heading :: GenXML (Clck ClckURL)
-heading = [hsx|
-  <div class="container-fluid header">
-   <div class="row top-row">
-    <div class="container-fluid">
-     <div class="col-md-1"></div>
-     <div class="col-md-7 stgriselda">
-       <span>St Griselda</span><img src=(ThemeData "data/imgs/logo-header.png") alt="stg-logo" />
-     </div>
+heading = genNavBar
+  {- [hsx|
+{-  <div>
+   <div class="columns">
+    <div class="column">
+     <span>St Griselda</span><img src=(ThemeData "data/imgs/logo-header.png") alt="stg-logo" />
     </div>
    </div>
-   <div class="row bottom-row">
-    <% genNavBar %>
-   </div>
-  </div>
-  |]
+    -}
+   <% genNavBar %>
+--  </div>
+  |] -}
 
 homepageTemplate :: ( EmbedAsChild (ClckT ClckURL (ServerPartT IO)) headers
                     , EmbedAsChild (ClckT ClckURL (ServerPartT IO)) body
@@ -362,22 +368,8 @@ homepageTemplate :: ( EmbedAsChild (ClckT ClckURL (ServerPartT IO)) headers
                  -> body
                  -> XMLGenT (ClckT ClckURL (ServerPartT IO)) XML
 homepageTemplate ttl hdr bdy = do
-  commonTemplate ttl hdr [hsx|
-       <div class="container-fluid">
-         <div class="row">
-          <div class="col-md-12 banner-img">
-           <img src=(ThemeData "data/imgs/stg-patreon-banner.jpg") />
-          </div>
-         </div>
-         <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-8 widget">
-           <% bdy %>
-          </div>
-         </div>
-         <div id="push"></div>
-       </div>
-  |]
+  commonTemplate ttl hdr [hsx| <% bdy %>
+                             |]
   {-
     p <- plugins <$> get
     (Just authRouteFn) <- getPluginRouteFn p (pluginName authenticatePlugin)

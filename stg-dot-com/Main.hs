@@ -7,10 +7,11 @@ import Clckwrks.Server      (simpleClckwrks)
 import Clckwrks.Plugin      (clckPlugin)
 import Clckwrks.Authenticate.Plugin (authenticatePlugin)
 import Clckwrks.Page.Plugin (pagePlugin)
+import Clckwrks.Media.Plugin (mediaPlugin)
 import Clckwrks.MailingList.Plugin (mailingListPlugin)
 import Control.Monad        (msum)
 import Data.Text            (Text, unpack)
-import Happstack.Server     (Request(rqPaths), Response, ServerPartT, nullDir, seeOther, toResponse, localRq)
+import Happstack.Server     (Request(rqPaths), Response, ServerPartT, Browsing(DisableBrowsing), nullDir, seeOther, toResponse, localRq, serveDirectory)
 import Web.Plugins.Core     (addHandler, initPlugin, setTheme)
 import System.Environment   (getArgs)
 -- we use 'PackageImports' because the 'Theme' module is supplied by multiple packages
@@ -64,19 +65,34 @@ initHook :: Text           -- ^ baseURI, e.g. http://example.org
          -> IO (ClckState, ClckwrksConfig)
 initHook baseURI clckState cc =
     do let p = plugins clckState
-       addHandler p "promo" promoHandler
+       addHandler p "promo" (redirector "/page/view-page-slug/8/promo")
+       addHandler p "pawstars-thanks" (redirector "/page/view-page-slug/10/pawstars-thanks")
+       addHandler p "pawstars-covers" (redirector "/page/view-page-slug/11/pawstars-covers")
+       addHandler p "free-downloads" (redirector "/page/view-page/10/")
+       addHandler p "cover-songs" (redirector "/page/view-page/11/")
+       addHandler p ".well-known" letsencryptHandler
        initPlugin p baseURI authenticatePlugin
        initPlugin p "" clckPlugin
        initPlugin p "" pagePlugin
+       initPlugin p "" mediaPlugin
        initPlugin p "" mailingListPlugin
        setTheme p (Just theme)
        return (clckState, cc)
 
+letsencryptHandler :: ClckPlugins -> [Text] -> ClckT ClckURL (ServerPartT IO) Response
+letsencryptHandler _plugins paths =
+    localRq (\rq -> rq { rqPaths = map unpack paths }) $
+      serveDirectory DisableBrowsing [] "/tmp/webroot/.well-known"
 
 promoHandler :: ClckPlugins -> [Text] -> ClckT ClckURL (ServerPartT IO) Response
 promoHandler _plugins paths =
   localRq (\rq -> rq { rqPaths = map unpack paths }) $
     msum [ nullDir >> seeOther ("/page/view-page-slug/8/promo" :: Text) (toResponse ()) ]
+
+redirector :: Text -> ClckPlugins -> [Text] -> ClckT ClckURL (ServerPartT IO) Response
+redirector path _plugins paths =
+  localRq (\rq -> rq { rqPaths = map unpack paths }) $
+    msum [ nullDir >> seeOther path (toResponse ()) ]
 
 ------------------------------------------------------------------------------
 -- main
